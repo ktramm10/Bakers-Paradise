@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5uvk5x2oxvcm"]
+
+[ext_resource type="PackedScene" uid="uid://l38pk6ndon88" path="res://platform.tscn" id="1_kor8k"]
+[ext_resource type="Script" path="res://oven.gd" id="2_h4amj"]
+[ext_resource type="Texture2D" uid="uid://l5uucxuuc5p8" path="res://Art/Oven/Oven_DEBUG_V1.png" id="3_61ghx"]
+
+[node name="Oven" instance=ExtResource("1_kor8k")]
+script = ExtResource("2_h4amj")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("3_61ghx")

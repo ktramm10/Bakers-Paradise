@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://ket5rgvrnh5k"]
+
+[ext_resource type="Script" path="res://donut_o_matic.gd" id="1_cagv1"]
+[ext_resource type="Texture2D" uid="uid://bk01pijhxkv2b" path="res://Art/Donut_O_Matic/Donut_O_Matic_Cap3_3Light.png" id="2_k75ii"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wqup4"]
+size = Vector2(64, 32)
+
+[node name="donut_o_matic" type="Node2D"]
+script = ExtResource("1_cagv1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_k75ii")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_wqup4")
+
+[node name="Donut_Recharge" type="Timer" parent="."]
+wait_time = 3.0
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
+[connection signal="timeout" from="Donut_Recharge" to="." method="_on_donut_recharge_timeout"]

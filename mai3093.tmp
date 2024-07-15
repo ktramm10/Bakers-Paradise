@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://bg3f0yj7raxnl"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_2o3bt"]
+[ext_resource type="PackedScene" uid="uid://lkugl0w6s2p1" path="res://plate.tscn" id="2_mn710"]
+[ext_resource type="PackedScene" uid="uid://b5uvk5x2oxvcm" path="res://oven.tscn" id="3_de03v"]
+[ext_resource type="PackedScene" uid="uid://ceg2lwewb4j7b" path="res://trash_can.tscn" id="5_2vr51"]
+[ext_resource type="Texture2D" uid="uid://yarrybu1efno" path="res://Art/Scenes/Game_Scene_Kitchen.png" id="5_wss7b"]
+[ext_resource type="PackedScene" uid="uid://ket5rgvrnh5k" path="res://donut_o_matic.tscn" id="6_ugbyt"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_2o3bt")
+
+[node name="Start" parent="." instance=ExtResource("2_mn710")]
+position = Vector2(656, 86)
+
+[node name="Start2" parent="." instance=ExtResource("2_mn710")]
+position = Vector2(465, 89)
+
+[node name="Start3" parent="." instance=ExtResource("2_mn710")]
+position = Vector2(303, 89)
+
+[node name="Oven" parent="." instance=ExtResource("3_de03v")]
+z_index = 1
+position = Vector2(93, 154)
+scale = Vector2(1, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Oven"]
+z_index = -1
+offset_left = -45.0
+offset_top = -43.0
+offset_right = 47.0
+offset_bottom = 49.0
+mouse_filter = 2
+color = Color(0.262932, 0.262932, 0.262932, 1)
+metadata/_edit_lock_ = true
+
+[node name="Trash_Can" parent="." instance=ExtResource("5_2vr51")]
+position = Vector2(660, 226)
+scale = Vector2(0.75, 0.75)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -3
+position = Vector2(360, 271)
+scale = Vector2(3, 3)
+texture = ExtResource("5_wss7b")
+metadata/_edit_lock_ = true
+
+[node name="Donut_O_Matic" parent="." instance=ExtResource("6_ugbyt")]
+position = Vector2(422, 196)
+scale = Vector2(2, 2)
+
+[connection signal="trashed" from="Trash_Can" to="." method="_on_trashed"]
+[connection signal="spawning_donut" from="Donut_O_Matic" to="." method="_on_donut_o_matic_spawning_donut"]

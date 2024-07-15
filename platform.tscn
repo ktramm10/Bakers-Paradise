@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://l38pk6ndon88"]
+
+[ext_resource type="Script" path="res://platform.gd" id="1_twqjs"]
+[ext_resource type="Texture2D" uid="uid://dolhq2sdm2k8p" path="res://Art/Oven/Oven_V1.png" id="2_bft38"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d7k15"]
+size = Vector2(180, 175)
+
+[node name="Platform" type="StaticBody2D" groups=["dropable"]]
+script = ExtResource("1_twqjs")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["dropable"]]
+shape = SubResource("RectangleShape2D_d7k15")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("2_bft38")

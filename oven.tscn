@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5uvk5x2oxvcm"]
+
+[ext_resource type="PackedScene" uid="uid://l38pk6ndon88" path="res://platform.tscn" id="1_kor8k"]
+[ext_resource type="Script" path="res://oven.gd" id="2_h4amj"]
+[ext_resource type="Texture2D" uid="uid://cy8aclx5xkybm" path="res://Art/Oven/Full_Size_Oven_V1.png" id="3_ux8oj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j7dnv"]
+size = Vector2(218, 97)
+
+[node name="Oven" instance=ExtResource("1_kor8k")]
+scale = Vector2(2, 2)
+script = ExtResource("2_h4amj")
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(0, 35.5)
+shape = SubResource("RectangleShape2D_j7dnv")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("3_ux8oj")
+
+[node name="Marker2D" type="Marker2D" parent="." index="2"]
+position = Vector2(-70, 20)
+
+[node name="Marker2D2" type="Marker2D" parent="." index="3"]
+position = Vector2(0, 20)
+
+[node name="Marker2D3" type="Marker2D" parent="." index="4"]
+position = Vector2(70, 20)
