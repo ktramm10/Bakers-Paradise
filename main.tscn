@@ -39,10 +39,10 @@ scale = Vector2(0.7, 0.7)
 
 [node name="HUD" parent="." instance=ExtResource("9_d3hel")]
 offset_left = 1.0
-offset_top = -1.0
+offset_top = 0.0
 offset_right = 1.0
-offset_bottom = -1.0
-time_in_sec = 130
+offset_bottom = 0.0
+time_in_sec = 122
 
 [node name="Oven" parent="." instance=ExtResource("3_de03v")]
 position = Vector2(109, 160)
