@@ -2,21 +2,19 @@ class_name Oven
 
 extends Platform
 
-var oven_positions:Array
-var oven_positions_occupation:Array
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	super._ready()
 	tag = ETag.oven
 	capacity = 3
 	
-	oven_positions.append($Marker2D.global_position)
-	oven_positions.append($Marker2D2.global_position)
-	oven_positions.append($Marker2D3.global_position)
+	positions.append($Marker2D.global_position)
+	positions.append($Marker2D2.global_position)
+	positions.append($Marker2D3.global_position)
 
 	for x in range(capacity + 1):
-		oven_positions_occupation.append(false)
+		positions_occupation.append(false)
 	
 func _process(delta):
 	for d:Donut in contains:
@@ -39,7 +37,7 @@ func placed(item:Donut):
 	item.containerPos = find_open_position()
 	item.get_timer().set_paused(false)
 	item.get_timer().start()
-	tween.tween_property(item, "position", oven_positions[item.containerPos], 0.2).set_ease(Tween.EASE_OUT)	
+	tween.tween_property(item, "position", positions[item.containerPos], 0.2).set_ease(Tween.EASE_OUT)	
 	idle()
 
 func returned(item:Donut):
@@ -63,7 +61,7 @@ func partial_remove(item:Donut):
 func full_remove(item:Donut):
 	print("full removal")
 	if contains.find(item) != -1:
-		oven_positions_occupation[item.containerPos] = false
+		positions_occupation[item.containerPos] = false
 		item.containerPos = -1
 		item.is_partially_removed = false
 
@@ -71,12 +69,12 @@ func full_remove(item:Donut):
 
 		
 func find_open_position() -> int:
-	for i in oven_positions_occupation.size():
-		if oven_positions_occupation.size() == 1:
-			oven_positions_occupation[0] == true
+	for i in positions_occupation.size():
+		if positions_occupation.size() == 1:
+			positions_occupation[0] == true
 			return 0
-		elif oven_positions_occupation[i] == false:
-			oven_positions_occupation[i] = true
+		elif positions_occupation[i] == false:
+			positions_occupation[i] = true
 			return i
 	return -1
 			

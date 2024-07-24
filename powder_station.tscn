@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://cdv7e8np8daho"]
+
+[ext_resource type="PackedScene" uid="uid://l38pk6ndon88" path="res://platform.tscn" id="1_808xr"]
+[ext_resource type="Texture2D" uid="uid://xdh0vtmm2b0f" path="res://Art/Stations/Powder_Station.png" id="2_au172"]
+[ext_resource type="Script" path="res://powder_station.gd" id="2_uscb3"]
+[ext_resource type="FontFile" uid="uid://da3ai0s0s0eim" path="res://Fonts/upheavtt.ttf" id="4_c4d3b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1s6h1"]
+size = Vector2(196, 84)
+
+[node name="PowderStation" instance=ExtResource("1_808xr")]
+position = Vector2(0, 1)
+script = ExtResource("2_uscb3")
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(0, -46)
+shape = SubResource("RectangleShape2D_1s6h1")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_au172")
+
+[node name="Marker2D" type="Marker2D" parent="." index="2"]
+position = Vector2(-60, -35)
+
+[node name="Marker2D2" type="Marker2D" parent="." index="3"]
+position = Vector2(0, -35)
+
+[node name="Marker2D3" type="Marker2D" parent="." index="4"]
+position = Vector2(60, -35)
+
+[node name="Button" type="Button" parent="." index="5"]
+visible = false
+offset_left = -58.0
+offset_right = 56.0
+offset_bottom = 41.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_c4d3b")
+theme_override_font_sizes/font_size = 36
+text = "Start
+"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -2,8 +2,7 @@ class_name Plate
 
 extends Platform
 
-var plate_positions:Array
-var plate_positions_occupation:Array
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
@@ -12,12 +11,12 @@ func _ready():
 	capacity = 3
 	
 	
-	plate_positions.append(Vector2(position.x - 50 * scale.x, position.y + 20 * scale.y))
-	plate_positions.append(Vector2(position.x,      position.y + 20 * scale.y))
-	plate_positions.append(Vector2(position.x + 50 * scale.x, position.y + 20 * scale.y))
-	plate_positions_occupation.append(false)
-	plate_positions_occupation.append(false)
-	plate_positions_occupation.append(false)
+	positions.append(Vector2(position.x - 50 * scale.x, position.y + 20 * scale.y))
+	positions.append(Vector2(position.x,      position.y + 20 * scale.y))
+	positions.append(Vector2(position.x + 50 * scale.x, position.y + 20 * scale.y))
+	positions_occupation.append(false)
+	positions_occupation.append(false)
+	positions_occupation.append(false)
 	
 # TODO: Implement Overrides
 
@@ -35,7 +34,7 @@ func placed(item:Donut):
 	var tween = item.get_tree().create_tween()
 	contains.append(item)
 	item.containerPos = find_open_position()
-	tween.tween_property(item, "position", plate_positions[item.containerPos], 0.2).set_ease(Tween.EASE_OUT)
+	tween.tween_property(item, "position", positions[item.containerPos], 0.2).set_ease(Tween.EASE_OUT)
 	if not item.get_timer().is_paused():
 		item.get_timer().set_paused(true)
 
@@ -55,17 +54,17 @@ func partial_remove(item:Donut):
 
 func full_remove(item):
 	if contains.find(item) != -1:
-		plate_positions_occupation[item.containerPos] = false
+		positions_occupation[item.containerPos] = false
 		item.containerPos = -1
 		item.is_partially_removed = false
 		contains.erase(item)
 	
 func find_open_position() -> int:
-	for i in plate_positions_occupation.size():
-		if plate_positions_occupation.size() == 1:
-			plate_positions_occupation[0] == true
+	for i in positions_occupation.size():
+		if positions_occupation.size() == 1:
+			positions_occupation[0] == true
 			return 0
-		elif plate_positions_occupation[i] == false:
-			plate_positions_occupation[i] = true
+		elif positions_occupation[i] == false:
+			positions_occupation[i] = true
 			return i
 	return -1

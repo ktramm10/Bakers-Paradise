@@ -1,19 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://lkugl0w6s2p1"]
+[gd_scene load_steps=4 format=3 uid="uid://lkugl0w6s2p1"]
 
 [ext_resource type="PackedScene" uid="uid://l38pk6ndon88" path="res://platform.tscn" id="1_kn5at"]
 [ext_resource type="Script" path="res://plate.gd" id="2_7f8ef"]
-[ext_resource type="Texture2D" uid="uid://c06461o1nxqpo" path="res://Art/Plate/Plate_V1.png" id="3_iyrqy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x75lc"]
 size = Vector2(187, 74)
 
 [node name="plate" instance=ExtResource("1_kn5at")]
-scale = Vector2(0.5, 0.5)
 script = ExtResource("2_7f8ef")
 
 [node name="CollisionShape2D" parent="." index="0"]
 position = Vector2(0.5, 33)
 shape = SubResource("RectangleShape2D_x75lc")
-
-[node name="Sprite2D" parent="." index="1"]
-texture = ExtResource("3_iyrqy")

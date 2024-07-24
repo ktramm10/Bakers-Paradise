@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cbj866ap1eynk"
-path="res://.godot/imported/Donut_Hole_DONE.png-e3f611458d735c3b621ce6c60f292366.ctex"
+uid="uid://ckjys5ok284q"
+path="res://.godot/imported/Donut_Hole_BURNT_POWDERED_BAD.png-78c75b17e7510091a87b89fb287f4a2a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Donuts/Donut_Hole/Donut_Hole_DONE.png"
-dest_files=["res://.godot/imported/Donut_Hole_DONE.png-e3f611458d735c3b621ce6c60f292366.ctex"]
+source_file="res://Art/Donuts/Donut_Hole/Powdered/Bad/Donut_Hole_BURNT_POWDERED_BAD.png"
+dest_files=["res://.godot/imported/Donut_Hole_BURNT_POWDERED_BAD.png-78c75b17e7510091a87b89fb287f4a2a.ctex"]
 
 [params]
 

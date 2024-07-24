@@ -1,38 +1,21 @@
-[gd_scene load_steps=8 format=3 uid="uid://bg3f0yj7raxnl"]
+[gd_scene load_steps=11 format=3 uid="uid://bg3f0yj7raxnl"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_2o3bt"]
-[ext_resource type="PackedScene" uid="uid://lkugl0w6s2p1" path="res://plate.tscn" id="2_mn710"]
 [ext_resource type="PackedScene" uid="uid://b5uvk5x2oxvcm" path="res://oven.tscn" id="3_de03v"]
 [ext_resource type="PackedScene" uid="uid://ceg2lwewb4j7b" path="res://trash_can.tscn" id="5_2vr51"]
 [ext_resource type="Texture2D" uid="uid://yarrybu1efno" path="res://Art/Scenes/Game_Scene_Kitchen.png" id="5_wss7b"]
 [ext_resource type="PackedScene" uid="uid://ket5rgvrnh5k" path="res://donut_o_matic.tscn" id="6_ugbyt"]
 [ext_resource type="PackedScene" uid="uid://bxsmphs2mdk86" path="res://tgb.tscn" id="7_m11kt"]
+[ext_resource type="PackedScene" uid="uid://dhf8wqd3hpqp1" path="res://bell.tscn" id="8_ynnt8"]
+[ext_resource type="PackedScene" uid="uid://bpsvd4lpnb7it" path="res://hud.tscn" id="9_d3hel"]
+[ext_resource type="PackedScene" uid="uid://cdv7e8np8daho" path="res://powder_station.tscn" id="10_5byur"]
+[ext_resource type="PackedScene" uid="uid://lkugl0w6s2p1" path="res://plate.tscn" id="10_q6fpy"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_2o3bt")
 
-[node name="Start2" parent="." instance=ExtResource("2_mn710")]
-position = Vector2(465, 89)
-
-[node name="Start3" parent="." instance=ExtResource("2_mn710")]
-position = Vector2(303, 89)
-
-[node name="Oven" parent="." instance=ExtResource("3_de03v")]
-z_index = 1
-position = Vector2(109, 160)
-scale = Vector2(1, 1)
-
-[node name="ColorRect" type="ColorRect" parent="Oven"]
-z_index = -1
-offset_left = -92.0
-offset_top = 5.0
-offset_right = 91.0
-offset_bottom = 63.0
-mouse_filter = 2
-color = Color(0.262932, 0.262932, 0.262932, 1)
-
 [node name="Trash_Can" parent="." instance=ExtResource("5_2vr51")]
-position = Vector2(667, 279)
+position = Vector2(671, 213)
 scale = Vector2(0.75, 0.75)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -47,7 +30,31 @@ position = Vector2(415, 204)
 scale = Vector2(2, 2)
 
 [node name="TGB" parent="." instance=ExtResource("7_m11kt")]
-position = Vector2(666, 102)
+position = Vector2(654, 101)
+scale = Vector2(1, 1)
+
+[node name="Bell" parent="." instance=ExtResource("8_ynnt8")]
+position = Vector2(709, 88)
+scale = Vector2(0.7, 0.7)
+
+[node name="HUD" parent="." instance=ExtResource("9_d3hel")]
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 1.0
+offset_bottom = -1.0
+time_in_sec = 130
+
+[node name="Oven" parent="." instance=ExtResource("3_de03v")]
+position = Vector2(109, 160)
+scale = Vector2(1, 1)
+
+[node name="PowderStation" parent="." node_paths=PackedStringArray("hud_ref") instance=ExtResource("10_5byur")]
+position = Vector2(284, 129)
+hud_ref = NodePath("../HUD")
+
+[node name="plate" parent="." instance=ExtResource("10_q6fpy")]
+position = Vector2(443, 91)
 
 [connection signal="trashed" from="Trash_Can" to="." method="_on_trashed"]
 [connection signal="spawning_donut" from="Donut_O_Matic" to="." method="_on_donut_o_matic_spawning_donut"]
+[connection signal="sell_donuts" from="Bell" to="TGB" method="_on_bell_sell_donuts"]

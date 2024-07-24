@@ -1,44 +1,45 @@
-class_name ToGoBox
+class_name PowderStation
+
 extends Platform
-# Called when the node enters the scene tree for the first time.
+
+@export var hud_ref:HUD
+
 func _ready():
+	hud_ref.send_quick_time_data.connect(_on_quicktime_data_recieved)
 	
-	capacity = 6
-	tag = ETag.ToGoBox
-	type_id = ETypeId.itemInteractable
+	tag = ETag.plate
+	capacity = 3
 	
-	positions.append($Marker2D.global_position)
-	positions.append($Marker2D2.global_position)
-	positions.append($Marker2D3.global_position)
-	positions.append($Marker2D4.global_position)
-	positions.append($Marker2D5.global_position)
-	positions.append($Marker2D6.global_position)
 	
+	positions.append(Vector2($Marker2D.global_position))
+	positions.append(Vector2($Marker2D2.global_position))
+	positions.append(Vector2($Marker2D3.global_position))
 	positions_occupation.append(false)
 	positions_occupation.append(false)
 	positions_occupation.append(false)
-	positions_occupation.append(false)
-	positions_occupation.append(false)
-	positions_occupation.append(false)
-
-
+	
 func _process(delta):
-	pass
-# TODO: Implement Overrides
+	if contains:
+		for d:Donut in contains:
+			if d.is_powdered:
+				$Button.visible = false
+				return
+		$Button.visible = true
+				
+	
 
 func idle():
-	print("called")
-	scale = Vector2(1, 1)
+	scale = Vector2(.5, .5)
 	
 func hovered():
-	print("called")
-	scale = Vector2(1.05 ,1.05)
+	scale = Vector2(.55 ,.55)
+	
 	
 func placed(item:Donut):
 	if item != Global.item_being_moved:
 		return
 	item.SCALE = Vector2(.5, .5)
-	item.is_partially_removed = false
+	item.is_partially_removed == false
 	var tween = item.get_tree().create_tween()
 	contains.append(item)
 	item.containerPos = find_open_position()
@@ -57,8 +58,7 @@ func returned(item):
 func partial_remove(item:Donut):
 	if contains.find(item) != -1:
 		item.is_partially_removed = true
-
-		item.SCALE = Vector2(1.0, 1.0)
+		item.SCALE = Vector2(1, 1)
 
 func full_remove(item):
 	if contains.find(item) != -1:
@@ -68,7 +68,7 @@ func full_remove(item):
 		contains.erase(item)
 	
 func find_open_position() -> int:
-	for i in positions.size():
+	for i in positions_occupation.size():
 		if positions_occupation.size() == 1:
 			positions_occupation[0] == true
 			return 0
@@ -78,20 +78,22 @@ func find_open_position() -> int:
 	return -1
 
 
-func _on_bell_sell_donuts():
-	var parent:MainScene = get_parent()
+
+
+func _on_button_pressed():
+	hud_ref.toggle_quicktime_visibility()
+	
+func _on_quicktime_data_recieved(selection):
 	for d:Donut in contains:
-		match d.donut_status:
-			Global.DONUT_STATUS.RAW:
-				Global.score += 0
-			Global.DONUT_STATUS.ALMOST_DONE:
-				Global.score += 5
-			Global.DONUT_STATUS.DONE:
-				Global.score += 10
-			Global.DONUT_STATUS.BURNED:
-				Global.score += 3
-	parent.to_be_removed.append_array(contains)
-	contains.clear()
-	for i in range(positions_occupation.size()):
-		positions_occupation[i] = false
-		
+		d.is_powdered = true
+		match selection:
+			0:
+				d.powder_status = Global.DONUT_MOD_STATUS.PERFECT
+			1: 
+				d.powder_status = Global.DONUT_MOD_STATUS.GOOD
+			2:
+				d.powder_status = Global.DONUT_MOD_STATUS.OKAY
+			3: 
+				d.powder_status = Global.DONUT_MOD_STATUS.BAD
+	$Button.visible = false
+

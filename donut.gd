@@ -4,13 +4,14 @@ extends Interactable
 
 signal donut_placed
 signal donut_has_no_home(item:Donut)
-
+var is_powdered = false
 var draggable = false
 var is_inside_droppable = false
 var body_ref: Platform
 var offset: Vector2
 var initialPos: Vector2
 var donut_status = Global.DONUT_STATUS.RAW
+var powder_status
 var SCALE = Vector2(1.0, 1.0)
 var temp_body_ref: Platform = null
 @export var containerPos:int
@@ -24,12 +25,15 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #TODO on click item being moved set to global variable and us global for other movements to only move one at a time
 func _process(_delta):
+	update_donut_texture()
 	if draggable:
 		if Input.is_action_just_pressed("click"):
 			initialPos = global_position
 			offset = get_global_mouse_position() - global_position
 			Global.item_being_moved = self
 			Global.is_dragging = true
+			print(powder_status)
+			print(is_powdered)
 
 		if Input.is_action_pressed("click") && Global.item_being_moved == self:
 			global_position = get_global_mouse_position() - offset
@@ -77,7 +81,7 @@ func _on_area_2d_body_exited(body:Platform):
 func _on_cook_timer_timeout():
 	if donut_status != Global.DONUT_STATUS.BURNED:
 		donut_status += 1
-		update_donut_texture()
+		
 	
 	
 func on_donut_placed(body:Platform):
@@ -103,13 +107,56 @@ func on_donut_placed(body:Platform):
 
 		
 func update_donut_texture():
-	if (donut_status == Global.DONUT_STATUS.ALMOST_DONE):
-		$Sprite2D.texture = preload("res://Art/Donuts/Donut_Hole/Donut_Hole_ALMOST_DONE.png")
-	elif (donut_status == Global.DONUT_STATUS.DONE):
-		$Sprite2D.texture = preload("res://Art/Donuts/Donut_Hole/Donut_Hole_DONE.png")
-	elif (donut_status == Global.DONUT_STATUS.BURNED):
-		$Sprite2D.texture = preload("res://Art/Donuts/Donut_Hole/Donut_Hole_BURNT.png")
-		
+	if not is_powdered:
+		if (donut_status == Global.DONUT_STATUS.ALMOST_DONE):
+			$Sprite2D.texture = preload("res://Art/Donuts/Donut_Hole/Standard/Donut_Hole_ALMOST_DONE.png")
+		elif (donut_status == Global.DONUT_STATUS.DONE):
+			$Sprite2D.texture = preload("res://Art/Donuts/Donut_Hole/Standard/Donut_Hole_DONE.png")
+		elif (donut_status == Global.DONUT_STATUS.BURNED):
+			$Sprite2D.texture = preload("res://Art/Donuts/Donut_Hole/Standard/Donut_Hole_BURNT.png")
+		elif (donut_status == Global.DONUT_STATUS.RAW):
+			$Sprite2D.texture = preload("res://Art/Donuts/Donut_Hole/Standard/Donut_Hole_RAW.png")
+	else:
+		if donut_status == Global.DONUT_STATUS.RAW:
+			match powder_status:
+				Global.DONUT_MOD_STATUS.BAD:
+					$Sprite2D.texture = preload("res://Art/Donuts/Donut_Hole/Powdered/Bad/Donut_Hole_RAW_POWDERED_BAD.png")
+				Global.DONUT_MOD_STATUS.OKAY:
+					$Sprite2D.texture = preload("res://Art/Donuts/Donut_Hole/Powdered/Okay/Donut_Hole_RAW_POWDERED_OKAY.png")
+				Global.DONUT_MOD_STATUS.GOOD:
+					$Sprite2D.texture = preload("res://Art/Donuts/Donut_Hole/Powdered/Good/Donut_Hole_RAW_POWDERED_GOOD.png")
+				Global.DONUT_MOD_STATUS.PERFECT:
+					$Sprite2D.texture = preload("res://Art/Donuts/Donut_Hole/Powdered/Perfect/Donut_Hole_RAW_POWDERED_PERFECT.png")
+		elif donut_status == Global.DONUT_STATUS.ALMOST_DONE:
+			match powder_status:
+				Global.DONUT_MOD_STATUS.BAD:
+					$Sprite2D.texture = preload("res://Art/Donuts/Donut_Hole/Powdered/Bad/Donut_Hole_ALMOST_DONE_POWDERED_BAD.png")
+				Global.DONUT_MOD_STATUS.OKAY:
+					$Sprite2D.texture = preload("res://Art/Donuts/Donut_Hole/Powdered/Okay/Donut_Hole_ALMOST_DONE_POWDERED_OKAY.png")
+				Global.DONUT_MOD_STATUS.GOOD:
+					$Sprite2D.texture = preload("res://Art/Donuts/Donut_Hole/Powdered/Good/Donut_Hole_ALMOST_DONE_POWDERED_GOOD.png")
+				Global.DONUT_MOD_STATUS.PERFECT:
+					$Sprite2D.texture = preload("res://Art/Donuts/Donut_Hole/Powdered/Perfect/Donut_Hole_ALMOST_DONE_POWDERED_PERFECT.png")
+		elif donut_status == Global.DONUT_STATUS.DONE:
+			match powder_status:
+				Global.DONUT_MOD_STATUS.BAD:
+					$Sprite2D.texture = preload("res://Art/Donuts/Donut_Hole/Powdered/Bad/Donut_Hole_DONE_POWDERED_BAD.png")
+				Global.DONUT_MOD_STATUS.OKAY:
+					$Sprite2D.texture = preload("res://Art/Donuts/Donut_Hole/Powdered/Okay/Donut_Hole_DONE_POWDERED_OKAY.png")
+				Global.DONUT_MOD_STATUS.GOOD:
+					$Sprite2D.texture = preload("res://Art/Donuts/Donut_Hole/Powdered/Good/Donut_Hole_DONE_POWDERED_GOOD.png")
+				Global.DONUT_MOD_STATUS.PERFECT:
+					$Sprite2D.texture = preload("res://Art/Donuts/Donut_Hole/Powdered/Perfect/Donut_Hole_DONE_POWDERED_PERFECT.png")
+		elif donut_status == Global.DONUT_STATUS.BURNED:
+			match powder_status:
+				Global.DONUT_MOD_STATUS.BAD:
+					$Sprite2D.texture = preload("res://Art/Donuts/Donut_Hole/Powdered/Bad/Donut_Hole_BURNT_POWDERED_BAD.png")
+				Global.DONUT_MOD_STATUS.OKAY:
+					$Sprite2D.texture = preload("res://Art/Donuts/Donut_Hole/Powdered/Okay/Donut_Hole_BURNT_POWDERED_OKAY.png")
+				Global.DONUT_MOD_STATUS.GOOD:
+					$Sprite2D.texture = preload("res://Art/Donuts/Donut_Hole/Powdered/Good/Donut_Hole_BURNT_POWDERED_GOOD.png")
+				Global.DONUT_MOD_STATUS.PERFECT:
+					$Sprite2D.texture = preload("res://Art/Donuts/Donut_Hole/Powdered/Perfect/Donut_Hole_BURNT_POWDERED_PERFECT.png")
 func get_timer() -> Timer:
 	return $CookTimer
 	
