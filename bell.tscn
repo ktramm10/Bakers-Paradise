@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dhf8wqd3hpqp1"]
 
-[ext_resource type="Script" path="res://bell.gd" id="1_26wo4"]
+[ext_resource type="Script" path="res://Scripts/bell.gd" id="1_26wo4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wipua"]
 size = Vector2(26, 25)

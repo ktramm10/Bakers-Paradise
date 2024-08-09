@@ -1,17 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://bxsmphs2mdk86"]
+[gd_scene load_steps=6 format=3 uid="uid://bxsmphs2mdk86"]
 
 [ext_resource type="PackedScene" uid="uid://l38pk6ndon88" path="res://platform.tscn" id="1_233i7"]
-[ext_resource type="Script" path="res://tgb.gd" id="2_ycnig"]
+[ext_resource type="Script" path="res://Scripts/tgb.gd" id="2_ycnig"]
 [ext_resource type="Texture2D" uid="uid://2pyicbeipx4" path="res://Art/Go_Box/To_Go_Box_V1.png" id="3_xhyvr"]
+[ext_resource type="AudioStream" uid="uid://bdfxah51paq7m" path="res://SFX/service_bell.wav" id="4_0apbi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w6sl4"]
-size = Vector2(58, 58)
+size = Vector2(68, 68)
 
 [node name="TGB" instance=ExtResource("1_233i7")]
 script = ExtResource("2_ycnig")
 
 [node name="CollisionShape2D" parent="." index="0"]
-position = Vector2(1, 0)
+position = Vector2(0, 0)
 shape = SubResource("RectangleShape2D_w6sl4")
 
 [node name="Sprite2D" parent="." index="1"]
@@ -35,3 +36,7 @@ position = Vector2(0, 20)
 
 [node name="Marker2D6" type="Marker2D" parent="." index="7"]
 position = Vector2(23, 20)
+
+[node name="Service_Bell" type="AudioStreamPlayer" parent="." index="8"]
+stream = ExtResource("4_0apbi")
+volume_db = -20.0

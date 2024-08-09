@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://gupniyrfc5xj"]
+
+[ext_resource type="Script" path="res://Scripts/donut_o_matic.gd" id="1_oh672"]
+[ext_resource type="Texture2D" uid="uid://dep54qq5xqst7" path="res://Art/Donuts/Yeast_Donut/Standard/Yeast_Donut_STD_RAW.png" id="3_7vr0g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cxobn"]
+size = Vector2(52, 52)
+
+[node name="Donut_Crate" type="Node2D" groups=["spawning_box"]]
+script = ExtResource("1_oh672")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_7vr0g")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_cxobn")
+
+[node name="ColorRect" type="ColorRect" parent="Area2D"]
+z_index = -1
+offset_left = -26.0
+offset_top = -26.0
+offset_right = 26.0
+offset_bottom = 26.0
+mouse_filter = 2
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

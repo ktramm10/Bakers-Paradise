@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://b5uvk5x2oxvcm"]
 
 [ext_resource type="PackedScene" uid="uid://l38pk6ndon88" path="res://platform.tscn" id="1_kor8k"]
-[ext_resource type="Script" path="res://oven.gd" id="2_h4amj"]
+[ext_resource type="Script" path="res://Scripts/oven.gd" id="2_h4amj"]
 [ext_resource type="Texture2D" uid="uid://cy8aclx5xkybm" path="res://Art/Oven/Full_Size_Oven_V1.png" id="3_ux8oj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j7dnv"]
@@ -34,8 +34,17 @@ color = Color(0.136826, 0.136826, 0.136826, 1)
 [node name="Marker2D" type="Marker2D" parent="." index="2"]
 position = Vector2(-70, 20)
 
-[node name="Marker2D2" type="Marker2D" parent="." index="3"]
+[node name="Marker2D4" type="Marker2D" parent="." index="3"]
+position = Vector2(-70, 45)
+
+[node name="Marker2D2" type="Marker2D" parent="." index="4"]
 position = Vector2(0, 20)
 
-[node name="Marker2D3" type="Marker2D" parent="." index="4"]
+[node name="Marker2D5" type="Marker2D" parent="." index="5"]
+position = Vector2(0, 45)
+
+[node name="Marker2D3" type="Marker2D" parent="." index="6"]
 position = Vector2(70, 20)
+
+[node name="Marker2D6" type="Marker2D" parent="." index="7"]
+position = Vector2(70, 45)

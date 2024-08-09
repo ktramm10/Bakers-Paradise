@@ -1,26 +1,28 @@
-[gd_scene load_steps=7 format=3 uid="uid://bpsvd4lpnb7it"]
+[gd_scene load_steps=9 format=3 uid="uid://bpsvd4lpnb7it"]
 
-[ext_resource type="Script" path="res://hud.gd" id="1_1rhaw"]
+[ext_resource type="Script" path="res://Scripts/hud.gd" id="1_1rhaw"]
 [ext_resource type="FontFile" uid="uid://da3ai0s0s0eim" path="res://Fonts/upheavtt.ttf" id="1_a722g"]
 [ext_resource type="Texture2D" uid="uid://d2avbq3jhnarh" path="res://Art/GamePlay_Helpers/Accuracy_Bar.png" id="2_bbnv3"]
 [ext_resource type="Texture2D" uid="uid://disniod3ju66u" path="res://Art/GamePlay_Helpers/Accuracy_Bar_Pointer.png" id="3_ixowi"]
-[ext_resource type="Script" path="res://Bar_Selector.gd" id="5_osxu4"]
+[ext_resource type="Script" path="res://Scripts/Bar_Selector.gd" id="5_osxu4"]
 [ext_resource type="PackedScene" uid="uid://rpgi5v8is2jo" path="res://orders.tscn" id="6_am0q2"]
+[ext_resource type="AudioStream" uid="uid://bqjlccf6h7n3w" path="res://SFX/ping_sound.wav" id="7_wbrf6"]
+[ext_resource type="AudioStream" uid="uid://bsmuw3q7mu7cr" path="res://SFX/Sugar SFX.wav" id="8_qduft"]
 
 [node name="HUD" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -56.0
+offset_left = -2.0
 offset_top = -3.0
-offset_right = -56.0
+offset_right = -2.0
 offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_1rhaw")
-metadata/_edit_group_ = true
+time_in_sec = 120.0
 
 [node name="Score" type="Label" parent="."]
 layout_mode = 1
@@ -70,7 +72,7 @@ offset_right = 32.0
 offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(3, 2)
+scale = Vector2(4, 3)
 pivot_offset = Vector2(32, 32)
 texture = ExtResource("2_bbnv3")
 
@@ -82,8 +84,26 @@ texture = ExtResource("3_ixowi")
 script = ExtResource("5_osxu4")
 modulation_distance = 31
 
+[node name="Powder_SFX" type="AudioStreamPlayer" parent="Bar/Bar_Selector"]
+stream = ExtResource("8_qduft")
+volume_db = -20.0
+
 [node name="Orders" parent="." instance=ExtResource("6_am0q2")]
+z_index = 5
 layout_mode = 1
+offset_left = 2.0
+offset_top = 718.0
+offset_right = -113.0
+offset_bottom = -61.0
+mouse_filter = 2
+
+[node name="Order_Ping" type="AudioStreamPlayer" parent="Orders"]
+stream = ExtResource("7_wbrf6")
+volume_db = -20.0
+
+[node name="OrderTimer" type="Timer" parent="."]
+wait_time = 4.0
 
 [connection signal="timeout" from="Game_Timer" to="." method="_on_game_timer_timeout"]
 [connection signal="send_color_selection" from="Bar/Bar_Selector" to="." method="_on_bar_selector_send_color_selection"]
+[connection signal="timeout" from="OrderTimer" to="." method="_on_order_timer_timeout"]

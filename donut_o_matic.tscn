@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://ket5rgvrnh5k"]
 
-[ext_resource type="Script" path="res://donut_o_matic.gd" id="1_cagv1"]
+[ext_resource type="Script" path="res://Scripts/donut_o_matic.gd" id="1_cagv1"]
 [ext_resource type="Texture2D" uid="uid://bk01pijhxkv2b" path="res://Art/Donut_O_Matic/Donut_O_Matic_Cap3_3Light.png" id="2_k75ii"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wqup4"]

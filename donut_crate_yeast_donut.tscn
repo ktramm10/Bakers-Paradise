@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://tlxbigxmnylx"]
+
+[ext_resource type="PackedScene" uid="uid://gupniyrfc5xj" path="res://donut_crate.tscn" id="1_x6f33"]
+[ext_resource type="Script" path="res://Scripts/Donut_Crate.gd" id="2_0lc6y"]
+
+[node name="Donut_Crate_Yeast_Donut" instance=ExtResource("1_x6f33")]
+script = ExtResource("2_0lc6y")
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(0.5, 0.5)

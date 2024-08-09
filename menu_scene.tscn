@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://c405lc8ccwpn8"]
+
+[ext_resource type="Texture2D" uid="uid://yarrybu1efno" path="res://Art/Scenes/Game_Scene_Kitchen.png" id="1_ljdva"]
+[ext_resource type="PackedScene" uid="uid://cxjt6xhcv4nda" path="res://main_menu.tscn" id="2_c0whr"]
+[ext_resource type="PackedScene" uid="uid://bg3f0yj7raxnl" path="res://main.tscn" id="3_xvbk8"]
+
+[node name="Menu_Scene" type="Node"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 960.0
+mouse_filter = 2
+texture = ExtResource("1_ljdva")
+
+[node name="Main_Menu" parent="." instance=ExtResource("2_c0whr")]
+offset_left = 10.0
+offset_top = -26.0
+offset_right = 10.0
+offset_bottom = -26.0
+main_scene = ExtResource("3_xvbk8")

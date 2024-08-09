@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://l38pk6ndon88" path="res://platform.tscn" id="1_808xr"]
 [ext_resource type="Texture2D" uid="uid://xdh0vtmm2b0f" path="res://Art/Stations/Powder_Station.png" id="2_au172"]
-[ext_resource type="Script" path="res://powder_station.gd" id="2_uscb3"]
+[ext_resource type="Script" path="res://Scripts/powder_station.gd" id="2_uscb3"]
 [ext_resource type="FontFile" uid="uid://da3ai0s0s0eim" path="res://Fonts/upheavtt.ttf" id="4_c4d3b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1s6h1"]

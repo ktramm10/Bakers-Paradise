@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2sgjpgx21hfx"]
+
+[ext_resource type="PackedScene" uid="uid://gupniyrfc5xj" path="res://donut_crate.tscn" id="1_hywkj"]
+[ext_resource type="Script" path="res://Scripts/Donut_Crate_Donut_Holes.gd" id="2_twhp5"]
+[ext_resource type="Texture2D" uid="uid://d0tuv5ue7bq1f" path="res://Art/Donuts/Donut_Hole/Standard/Donut_Hole_RAW.png" id="3_epd7l"]
+
+[node name="Donut_Crate_Donut_Holes" instance=ExtResource("1_hywkj")]
+script = ExtResource("2_twhp5")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_epd7l")

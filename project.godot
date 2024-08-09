@@ -10,19 +10,19 @@ config_version=5
 
 [application]
 
-config/name="Project_Bakery_V1"
-run/main_scene="res://main.tscn"
+config/name="Bakers Paradise"
+run/main_scene="res://menu_scene.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://Art/Icon/Donut_1.png"
 
 [autoload]
 
-Global="*res://global.gd"
+Global="*res://Scripts/global.gd"
 
 [display]
 
-window/size/viewport_width=720
-window/size/viewport_height=540
+window/size/viewport_width=1280
+window/size/viewport_height=960
 window/stretch/mode="viewport"
 
 [input]

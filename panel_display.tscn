@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhavn25whww3o"]
+
+[ext_resource type="Script" path="res://panel_display.gd" id="1_ovnb8"]
+[ext_resource type="Texture2D" uid="uid://dd5spo3ed7gnk" path="res://Art/Donuts/Yeast_Donut/Standard/Yeast_Donut_STD_DONE.png" id="2_lboqi"]
+[ext_resource type="FontFile" uid="uid://da3ai0s0s0eim" path="res://Fonts/upheavtt.ttf" id="2_y8u88"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 32.0
+offset_bottom = 32.0
+script = ExtResource("1_ovnb8")
+
+[node name="Panel_Display" type="ColorRect" parent="."]
+layout_direction = 1
+layout_mode = 0
+offset_right = 48.0
+offset_bottom = 49.0
+mouse_filter = 2
+
+[node name="order_specifics" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 8.0
+offset_right = 63.0
+offset_bottom = 72.0
+scale = Vector2(0.7, 0.7)
+pivot_offset = Vector2(8, 8)
+texture = ExtResource("2_lboqi")
+
+[node name="Quantity" type="Label" parent="."]
+layout_mode = 0
+offset_top = -3.0
+offset_right = 48.0
+offset_bottom = 20.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_y8u88")
+theme_override_font_sizes/font_size = 20
+text = "0"
+horizontal_alignment = 1

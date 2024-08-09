@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://l38pk6ndon88"]
+[gd_scene load_steps=5 format=3 uid="uid://l38pk6ndon88"]
 
-[ext_resource type="Script" path="res://platform.gd" id="1_twqjs"]
+[ext_resource type="Script" path="res://Scripts/platform.gd" id="1_twqjs"]
 [ext_resource type="Texture2D" uid="uid://c06461o1nxqpo" path="res://Art/Plate/Plate_V1.png" id="2_f4x2n"]
+[ext_resource type="AudioStream" uid="uid://bctj33r6tlhm8" path="res://SFX/Placed.wav" id="3_ynh8j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d7k15"]
 size = Vector2(189, 112.5)
@@ -18,3 +19,7 @@ shape = SubResource("RectangleShape2D_d7k15")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(3, 3)
 texture = ExtResource("2_f4x2n")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ynh8j")
+volume_db = -15.0
